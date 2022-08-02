@@ -61,7 +61,7 @@ jobs:
             fi
           done < \$proj
         done" > add-xunitxml-dependency.sh
-        ./add-xunitxml-dependency.sh
+        sudo ./add-xunitxml-dependency.sh
 
 
     - name: Test
