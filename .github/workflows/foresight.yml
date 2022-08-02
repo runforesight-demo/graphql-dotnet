@@ -42,8 +42,30 @@ jobs:
       with:
         dotnet-version: 6.0.x
 
+    - name: Add XunitXML dependency
+      run: |
+        echo "
+        regex='PackageReference Include=\"([^\"]*)\" Version=\"([^\"]*)\"'
+        find . -name \"*.*proj\" | while read proj
+        do
+          while read line
+          do
+            if [[ \$line =~ \$regex ]]
+            then
+              name=\"\${BASH_REMATCH[1]}\"
+              version=\"\${BASH_REMATCH[2]}\"
+              if [[ $version != *-* ]]
+              then
+                dotnet add \$proj package XunitXml.TestLogger --version 3.0.70
+              fi
+            fi
+          done < \$proj
+        done" > add-xunitxml-dependency.sh
+        ./add-xunitxml-dependency.sh
+
+
     - name: Test
-      run: dotnet test ./src/GraphQL.sln --logger trx
+      run: dotnet test ./src/GraphQL.sln --logger:xunit
 
 
     - name: Analyze Test and/or Coverage Results
@@ -52,5 +74,4 @@ jobs:
       with:
         api_key: ${{ secrets.FORESIGHT_API_KEY }}
         test_framework: xunit2
-        test_format: trx
         test_path: "./src/**/TestResults/**"
