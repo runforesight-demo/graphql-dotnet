@@ -6,7 +6,7 @@
 </a>
 
 ---
-![Success Details]()=b183d2c2-d0bb-44e8-b134-7e22f797886c)
+![Success Details](https://api-public.service.runforesight.com/api/v1/badge/success?repoId=b183d2c2-d0bb-44e8-b134-7e22f797886c)
 ![Test Result](https://api-public.service.runforesight.com/api/v1/badge/test?repoId=b183d2c2-d0bb-44e8-b134-7e22f797886c)
 ![Utilization](https://api-public.service.runforesight.com/api/v1/badge/utilization?repoId=b183d2c2-d0bb-44e8-b134-7e22f797886c)
 
